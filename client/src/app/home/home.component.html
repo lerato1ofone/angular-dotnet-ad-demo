@@ -1,0 +1,20 @@
+<div *ngIf="!loginDisplay">
+    <p>Please sign-in to see users information.</p>
+</div>
+
+<div *ngIf="loginDisplay">
+    <p>Login successful!</p>
+    
+    <p>Request your Users using AD authentication with backend by clicking the <span>Users</span> button below.</p>
+    
+    <button mat-raised-button (click)="getUsers()"><span>Get users</span></button>
+
+    <div *ngIf="users.length > 0">
+        <p>Users. ➳</p>
+
+        <div *ngFor="let user of users">
+            <p>{{ user.name }} {{ user.surname }} </p>
+        </div>
+    </div>
+  
+</div>
