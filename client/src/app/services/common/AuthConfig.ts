@@ -3,6 +3,7 @@ import {
   Configuration,
   BrowserCacheLocation,
 } from '@azure/msal-browser';
+import { environment } from '../../../environments/environment';
 
 const isIE =
   window.navigator.userAgent.indexOf('MSIE ') > -1 ||
@@ -10,9 +11,9 @@ const isIE =
 
 export const msalConfig: Configuration = {
   auth: {
-    clientId: '<your-client-id-here>',
-    authority: 'https://login.microsoftonline.com/<your-tenant-id-here>', // This is your tenant ID
-    redirectUri: '<redirect-link>', // This is your redirect URI
+    clientId: environment.adClientId,
+    authority: `https://login.microsoftonline.com/${environment.adTenantId}`, // This is your tenant ID
+    redirectUri: environment.redirectUri, // This is your redirect URI
   },
   cache: {
     cacheLocation: BrowserCacheLocation.LocalStorage,
@@ -31,8 +32,8 @@ export const msalConfig: Configuration = {
 
 export const protectedResources = {
   usersListApi: {
-    endpoint: 'https://localhost:5001/api/users',
-    scopes: ['<sope-link-here>'],
+    endpoint: `${environment.apiUrl}/users`,
+    scopes: [environment.scopeUri],
   },
 };
 

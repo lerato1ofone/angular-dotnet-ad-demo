@@ -50,12 +50,14 @@ export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
     protectedResourceMap,
   };
 }
+
 export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   return {
     interactionType: InteractionType.Redirect,
     authRequest: loginRequest,
   };
 }
+
 @NgModule({
   declarations: [AppComponent, HomeComponent, UsersComponent],
   imports: [

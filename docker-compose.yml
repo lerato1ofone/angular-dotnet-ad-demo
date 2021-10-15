@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  server:
+    container_name: angular-dotnet-AD-server
+    build:
+      context: ./Server
+      dockerfile: Dockerfile
+    ports:
+      - '5001:80'
+  client:
+    container_name: angular-dotnet-AD-client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - '4200:80'
+    depends_on:
+      - server
