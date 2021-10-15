@@ -14,21 +14,24 @@ import {
 } from '@azure/msal-browser';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'Azure Ad Testing Demo';
-  isIframe = false;
-  loginDisplay = false;
+  title: string = 'Azure Ad Testing Demo';
+  isIframe: boolean = false;
+  loginDisplay: boolean = false;
+
   private readonly _destroying$ = new Subject<void>();
   constructor(
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
     private authService: MsalService,
     private msalBroadcastService: MsalBroadcastService
   ) {}
+
   ngOnInit(): void {
     this.isIframe = window !== window.parent && !window.opener;
     /**
@@ -46,9 +49,11 @@ export class AppComponent implements OnInit, OnDestroy {
         this.setLoginDisplay();
       });
   }
+
   setLoginDisplay() {
     this.loginDisplay = this.authService.instance.getAllAccounts().length > 0;
   }
+
   login() {
     if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
       if (this.msalGuardConfig.authRequest) {
@@ -76,9 +81,11 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     }
   }
+
   logout() {
     this.authService.logout();
   }
+
   // unsubscribe to events when component is destroyed
   ngOnDestroy(): void {
     this._destroying$.next(undefined);
