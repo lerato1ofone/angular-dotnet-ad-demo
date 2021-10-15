@@ -74,16 +74,15 @@ docker compose up
 Visit the frontend application in your browser on http://localhost:4200
 
 - Alternatively, run both applications on your localhost, with dotnet run and npm start (ng serve)
-
+- Run the server
 ```sh
 cd Server
 dotner run
 ```
-
+- Run the client
+```sh
 cd ../client
 npm install
 npm start
-
 ```
 Visit the frontend application in your browser on http://localhost:4200
-```
